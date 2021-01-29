@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -10,11 +11,11 @@
 
     <!-- uncompressed version  -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"
-            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-            crossorigin="anonymous"></script>
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src='https://unpkg.com/spritespin@x.x.x/release/spritespin.js'></script>
     <script src="index.js"></script>
 </head>
+
 <body>
     <div class="slider-wrapper">
         <div id='mySpriteSpin'></div>
@@ -27,8 +28,14 @@
             position: relative;
         }
 
-        .slider-wrapper > #mySpriteSpin {
+        .slider-wrapper>#mySpriteSpin {
             width: 50vw;
+        }
+
+        @media all and (orientation:portrait) {
+            .slider-wrapper>#mySpriteSpin {
+                width: 100vw;
+            }
         }
 
         .custom-tooltip-1 {
@@ -42,4 +49,5 @@
         }
     </style>
 </body>
+
 </html>
