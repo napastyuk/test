@@ -18,17 +18,27 @@
 <body>
     <div class="slider-wrapper">
         <div id='mySpriteSpin'></div>
+        <div class="custom-tooltip-1" hidden>Это сообщение показывается только с 100 по 150 кадр</div>
     </div>
     <style>
         .slider-wrapper {
             max-width: 90vw;
             max-height: 90vh;
-            margin: auto;
+            position: relative;
         }
 
         .slider-wrapper > #mySpriteSpin {
             width: 50vw;
-            margin: auto;
+        }
+
+        .custom-tooltip-1 {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            background-color: rgb(43 209 222 / 16%);
+            border: 2px solid green;
+            width: 100px;
+            padding: 0.5rem;
         }
     </style>
 </body>
