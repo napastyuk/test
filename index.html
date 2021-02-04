@@ -13,13 +13,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src='https://unpkg.com/spritespin@x.x.x/release/spritespin.js'></script>
+    <script src="data.js"></script>
     <script src="index.js"></script>
 </head>
 
 <body>
     <div class="slider-wrapper">
-        <div id='mySpriteSpin'></div>
-        <div class="custom-tooltip-1" hidden>Это сообщение показывается только с 100 по 150 кадр</div>
+        <div id='mySpriteSpin'>
+        </div>
     </div>
     <style>
         .slider-wrapper {
@@ -29,7 +30,7 @@
         }
 
         .slider-wrapper>#mySpriteSpin {
-            width: 50vw;
+            width: 70vw;
         }
 
         @media all and (orientation:portrait) {
@@ -38,7 +39,7 @@
             }
         }
 
-        .custom-tooltip-1 {
+        .custom-tooltip {
             position: absolute;
             top: 10%;
             left: 10%;

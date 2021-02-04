@@ -1,5 +1,5 @@
 window.onload = function () {
-    $("#mySpriteSpin").spritespin({
+    var spritespinObj = $("#mySpriteSpin").spritespin({
         source: SpriteSpin.sourceArray('img/turn_{frame}.jpg',
             {
                 frame: [1, 200],
@@ -27,7 +27,10 @@ window.onload = function () {
 
         onComplete: function (e, data) {
             //все что нужно загрузилось, и отрисовалась первая картинка
-            //console.log('onComplete');
+            console.log('onComplete');
+            $(data.target).append('<div class="tooltip-wrapper"></div>');
+            loadTooltips();
+            checkTooltipVisibility(data);
         },
 
         onDraw: function (e, data) {
@@ -37,9 +40,8 @@ window.onload = function () {
 
         onFrame: function (e, data) {
             //когда поступил запрос на изменение текущего кадра
-            console.log('текущий кадр',data.frame);
-            (data.frame > 100 && data.frame < 150) ? $(".custom-tooltip-1").show() : $(".custom-tooltip-1").hide()
-            
+            //console.log('текущий кадр',data.frame);
+            checkTooltipVisibility(data);           
         },
 
         onFrameChanged: function (e, data) {
@@ -47,7 +49,39 @@ window.onload = function () {
             //console.log('onFrameChanged');
         },
 
-    });
+    }).data("spritespin");
 
+    function loadTooltips() {
+        if(!tooltipConfig) {console.log('данные для тултипов не найдены');return;};    
+    
+        let wrapper = document.querySelector('.tooltip-wrapper');
+        tooltipConfig.forEach(item => {
+            wrapper.insertAdjacentHTML('beforeend',`
+                <div class="custom-tooltip" 
+                data-frameRangeStartNumber="${item.frameRangeStartNumber}" 
+                data-frameRangeEndNumber="${item.frameRangeEndNumber}"
+                style="top:${item.tooltipCoordX}%;left:${item.tooltipCoordY}%;" 
+                hidden>${item.text}</div>`)
+        });
+    }
+
+    function checkTooltipVisibility(data) {
+        //функция вызывается после каждого кадра
+        //data - объект предоставляемый spritespin с информацией о текущем состоянии
+        $(".tooltip-wrapper > div").each(function(i,elem) {
+            let currentFrame = data.frame;
+            let starFrame = elem.dataset.framerangestartnumber;
+            let endFrame = elem.dataset.framerangeendnumber; 
+            if (currentFrame >= starFrame && currentFrame <= endFrame) {
+                elem.hidden = false
+            } else {
+                elem.hidden = true
+            }
+        });
+    }
+
+    
 }
+
+
 
